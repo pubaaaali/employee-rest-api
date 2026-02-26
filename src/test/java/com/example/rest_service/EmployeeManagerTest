@@ -1,0 +1,33 @@
+package com.example.rest_service;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class EmployeeManagerTest {
+
+    @Test
+    public void testInitialEmployeeCount() {
+        EmployeeManager manager = new EmployeeManager();
+        assertEquals(4, manager.getEmployees().getEmployeeList().size());
+    }
+
+    @Test
+    public void testFirstEmployeeData() {
+        EmployeeManager manager = new EmployeeManager();
+        Employee first = manager.getEmployees().getEmployeeList().get(0);
+
+        assertEquals("E001", first.getEmployeeId());
+        assertEquals("Alice", first.getFirstName());
+        assertEquals("Johnson", first.getLastName());
+    }
+
+    @Test
+    public void testEmployeeListIsModifiable() {
+        EmployeeManager manager = new EmployeeManager();
+        Employee newEmp = new Employee("E005", "Emma", "Wilson", "emma@company.com", "Designer");
+
+        manager.getEmployees().getEmployeeList().add(newEmp);
+
+        assertEquals(5, manager.getEmployees().getEmployeeList().size());
+    }
+}
